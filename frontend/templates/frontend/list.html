@@ -1,0 +1,445 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>TO DO</title>
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    <style>
+
+    body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 0.88rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: left;
+    background-color: #6200EA
+}
+
+i {
+    font-style: italic
+}
+
+.container {
+    margin-top: 100px
+}
+
+.card {
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+    border-width: 0;
+    transition: all .2s
+}
+
+.card-header:first-child {
+    border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    border-bottom-width: 1px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0.625rem;
+    height: 3.5rem;
+    background-color: #fff
+}
+
+.widget-subheading {
+    color: #858a8e;
+    font-size: 10px
+}
+
+.card-header.card-header-tab .card-header-title {
+    display: flex;
+    align-items: center;
+    white-space: nowrap
+}
+
+.card-header .header-icon {
+    font-size: 1.65rem;
+    margin-right: 0.625rem
+}
+
+.card-header.card-header-tab .card-header-title {
+    display: flex;
+    align-items: center;
+    white-space: nowrap
+}
+
+.btn-actions-pane-right {
+    margin-left: auto;
+    white-space: nowrap
+}
+
+.text-capitalize {
+    text-transform: capitalize !important
+}
+
+.scroll-area-sm {
+    height: 370px;
+    overflow-x: hidden
+}
+
+::-webkit-scrollbar {
+ width: 7px;
+ height: 7px;
+}
+::-webkit-scrollbar-thumb {
+ background: linear-gradient(13deg, #a156ad 14%,#7584f5 80%);
+ border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover{
+ background: #868bd4;
+}
+::-webkit-scrollbar-track{
+ background: #ffffff;
+ border-radius: 8px;
+ box-shadow: inset 7px 10px 12px #f0f0f0;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125)
+}
+
+.list-group {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0
+}
+
+.todo-indicator {
+    position: absolute;
+    width: 4px;
+    height: 60%;
+    border-radius: 0.3rem;
+    left: 0.625rem;
+    top: 20%;
+    opacity: .6;
+    transition: opacity .2s
+}
+
+.bg-warning {
+    background-color: #f7b924 !important
+}
+
+.widget-content {
+    padding: 1rem;
+    flex-direction: row;
+    align-items: center
+}
+
+.widget-content .widget-content-wrapper {
+    display: flex;
+    flex: 1;
+    position: relative;
+    align-items: center
+}
+
+.widget-content .widget-content-right.widget-content-actions {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .2s
+}
+
+.widget-content .widget-content-right {
+    margin-left: auto
+}
+
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer
+}
+
+.btn {
+    position: relative;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s
+}
+
+.btn-outline-success {
+    color: #3ac47d;
+    border-color: #3ac47d
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #f5dae2;
+    border-color: #3ac47d
+}
+
+.btn-done {
+    color: #fff;
+    background-color: #3ac47d;
+    border-color: #3ac47d
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #3f6ad8;
+    border-color: #3f6ad8
+}
+
+.btn {
+    position: relative;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    outline: none !important
+}
+
+.fa-times {
+    color: #c91851;
+}
+
+.card-footer {
+    background-color: #fff
+}
+
+
+
+
+    </style>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script type='text/javascript'
+            src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+
+</head>
+<body oncontextmenu='return false' class='snippet-body'>
+<div class="row d-flex justify-content-center container">
+    <div class="col-md-8">
+        <div class="card-hover-shadow-2x mb-3 card">
+            <div class="card-header-tab card-header">
+                <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i
+                        class="fa fa-tasks"></i>&nbsp;Task Lists
+                </div>
+            </div>
+            <div class="scroll-area-sm">
+                <perfect-scrollbar class="ps-show-limits">
+                    <div style="position: static;" class="ps ps--active-y">
+                        <div class="ps-content" id="list-wrapper">
+
+                        </div>
+                    </div>
+                </perfect-scrollbar>
+            </div>
+            <div class="d-block text-right card-footer">
+                <form id="my-form">
+                    <div class="input-group" id="form-wrap">
+                        <input type="text" id="task-add" class="form-control" value=""
+                               placeholder="WHAT DO YOU WANT TO DO?" aria-label="" aria-describedby="basic-addon1">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="submit" id="submit">Add task</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type='text/javascript'>
+
+                                function getCookie(name) {
+                                    let cookieValue = null;
+                                    if (document.cookie && document.cookie !== '') {
+                                        const cookies = document.cookie.split(';');
+                                        for (let i = 0; i < cookies.length; i++) {
+                                            const cookie = cookies[i].trim();
+                                            // Does this cookie string begin with the name we want?
+                                            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    return cookieValue;
+                                }
+                                const csrftoken = getCookie('csrftoken');
+                                var activeItem = null
+
+                                buildList()
+
+                                    function buildList(){
+                                        var wrapper = document.getElementById('list-wrapper')
+                                        wrapper.innerHTML = ''
+                                        var url = 'https://todoki.herokuapp.com/api/v1/task-list/'
+
+                                        fetch(url)
+                                        .then((resp) => resp.json())
+                                        .then(function(data){
+                                            console.log('Data:', data)
+
+                                            var list = data.results
+                                            for (var i in list){
+                                                var check = `<button class="border-0 btn-transition check btn btn-outline-success"> <i class="fa fa-times"></i></button>`
+                                                var title = `<span class="title">${list[i].title}</span>`
+                                                if (list[i].done == true){
+                                                    title = `<strike class="title">${list[i].title}</strike>`
+                                                    check = `<button class="border-0 btn-transition check btn btn-done"> <i class="fa fa-check"></i></button>`
+                                                }
+                                                var item = `
+
+                            <li class="list-group-item">
+                                    <div class="todo-indicator bg-info"></div>
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left mr-2">
+                                            ${check}
+                                            </div>
+                                            <div class="widget-content-left flex2">
+                                                <div class="widget-heading">
+                                                ${title}
+                                                </div>
+                                            </div>
+                                            <div class="widget-subheading">
+
+                                                </div>
+                                            <div class="widget-content-right">
+                                                <div type="button" class="edit badge badge-info ml-2">EDIT</div>
+                                                <button class="border-0 btn-transition btn btn-outline-danger delete"> <i class="fa fa-trash"></i> </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </li>
+
+                            `
+                            wrapper.innerHTML += item
+                            }
+
+                            for (var i in list){
+                                var editBtn = document.getElementsByClassName('edit')[i]
+                                var deleteBtn = document.getElementsByClassName('delete')[i]
+                                var title = document.getElementsByClassName('check')[i]
+
+                                editBtn.addEventListener('click', (function(item){
+                                    return function(){
+                                        editTask(item)
+                                    }
+
+                                })(list[i]))
+
+                                deleteBtn.addEventListener('click', (function(item){
+                                    return function(){
+                                        deleteTask(item)
+                                    }
+
+                                })(list[i]))
+
+                                title.addEventListener('click', (function(item){
+                                    return function(){
+                                        strikeUnstrike(item)
+                                    }
+
+                                })(list[i]))
+
+                            }
+                                            })
+                                    }
+
+                            var form = document.getElementById('my-form')
+
+
+                            function CheckTaskValue() {
+                            var xss_prevent = document.getElementById('task-add').value
+                                    if (document.getElementById('task-add').value === "") {
+                                        document.getElementById('task-add').placeholder = "YOU NEED TO WRITE SOMETHING HERE";
+                                        console.log("Task is empty")
+                                        return true
+                                    }
+                                    else if (xss_prevent.includes("<") || xss_prevent.includes("/")) {
+                                        document.getElementById('my-form').reset()
+                                        document.getElementById('task-add').placeholder = "PLEASE DON'T TRY TO HACK ME";
+                                        console.log("XSS attack")
+                                        return true
+                                    }
+                                    else if (xss_prevent.length >= 70){
+                                        document.getElementById('my-form').reset()
+                                        document.getElementById('task-add').placeholder = "TASK IS TOO LONG";
+                                        console.log("Task too long")
+                                        return true
+                                    }
+                                    else {
+                                        document.getElementById('task-add').placeholder = "WHAT DO YOU WANT TO DO?";
+                                    }
+                            }
+
+                            form.addEventListener('submit', function(e){
+                                e.preventDefault()
+                                console.log('Form submitted')
+                                var url = 'https://todoki.herokuapp.com/api/v1/task-new/'
+                                if (CheckTaskValue()) {
+                                 return false
+                                 }
+                                else if (activeItem != null){
+                                    var url = `https://todoki.herokuapp.com/api/v1/task-update/${activeItem.id}/`
+                                    activeItem = null
+                                }
+
+
+
+
+                                var title = document.getElementById('task-add').value
+                                fetch(url, {
+                                    method:'POST',
+                                    headers: {
+                                        'Content-type':'application/json',
+                                        'X-CSRFToken': csrftoken,
+                                    },
+                                    body:JSON.stringify({'title':title})
+                                }
+                                ).then(function(response){
+                                    buildList()
+                                    document.getElementById('my-form').reset()
+                                    })
+                            })
+
+
+                            function editTask(item){
+                                console.log('Task Edited:', item)
+                                activeItem = item
+                                document.getElementById('task-add').value = activeItem.title
+                            }
+
+                            function deleteTask(item){
+                                console.log('Delete task')
+                                fetch(`https://todoki.herokuapp.com/api/v1/task-delete/${item.id}/`, {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'Content-type':'application/json',
+                                        'X-CSRFToken': csrftoken,
+                                    }
+                                }).then((response) => {
+                                    buildList()
+                                })
+                            }
+
+                            function strikeUnstrike(item){
+                                console.log('strike click')
+
+                                item.done = !item.done
+                                fetch(`https://todoki.herokuapp.com/api/v1/task-update/${item.id}/`, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-type':'application/json',
+                                        'X-CSRFToken': csrftoken,
+                                    },
+                                    body:JSON.stringify({'title':item.title, 'done':item.done}
+                                    )
+                                }).then((response) => {
+                                    buildList()
+                                })
+                            }
+
+
+
+
+
+
+</script>
+</body>
+</html>
